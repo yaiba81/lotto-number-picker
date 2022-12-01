@@ -7,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import random
 import sys
 import time
 import re
@@ -16,10 +17,15 @@ chrome_options.add_argument('--headless')
 website = "https://www.lottopcso.com/"
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 sixfortytwo = []
+sixfortytwowin = []
 sixfortyfive = []
+sixfortyfivewin = []
 sixfortynine = []
+sixfortyninewin = []
 sixfiftyfive = []
+sixfiftyfivewin = []
 sixfiftyeight = []
+sixfiftyeightwin = []
 
 class App(QMainWindow):
 
@@ -27,6 +33,7 @@ class App(QMainWindow):
         super(App, self). __init__()
         loadUi('assets/ui/main.ui', self)
         self.getLatestWinCombi()
+        self.pdpBtn(43, sixfortytwo)
         self.label.mousePressEvent = self.clear
         self.btn642pdp.clicked.connect(lambda: self.testBtn("Hello World"))
         self.btn642sp.clicked.connect(lambda: self.testBtn("Hello World"))
@@ -39,6 +46,24 @@ class App(QMainWindow):
         self.btn658pdp.clicked.connect(lambda: self.testBtn("Hello World"))
         self.btn658sp.clicked.connect(lambda: self.testBtn("Hello World"))
 
+    def pdpBtn(self, num, combi):
+        pick = []
+        choices = []
+        nums = []
+        weights = []
+        iter = num - 6
+        
+        for i in range(1, num):
+            if i not in combi:
+                nums.append(i)
+
+        for i in range(1, iter):
+            pass
+
+
+
+    def spBtn(self, num, combi):
+        pass
 
     def testBtn(self, word):
         self.label642pdp.setText(word) 
@@ -72,9 +97,9 @@ class App(QMainWindow):
         for s in six42:
             if s[0] == '0':
                 s = s[1]
-                sixfortytwo.append(s)
+                sixfortytwo.append(int(s))
             else:
-                sixfortytwo.append(s)
+                sixfortytwo.append(int(s))
         self.label642win.setText('-'.join(map(str,sixfortytwo)))
 
         six45 = re.split("-", driver.find_element(By.XPATH, 
@@ -82,9 +107,9 @@ class App(QMainWindow):
         for s in six45:
             if s[0] == '0':
                 s = s[1]
-                sixfortyfive.append(s)
+                sixfortyfive.append(int(s))
             else:
-                sixfortyfive.append(s)
+                sixfortyfive.append(int(s))
         self.label645win.setText('-'.join(map(str,sixfortyfive)))
 
         six49 = re.split("-", driver.find_element(By.XPATH, 
@@ -92,9 +117,9 @@ class App(QMainWindow):
         for s in six49:
             if s[0] == '0':
                 s = s[1]
-                sixfortynine.append(s)
+                sixfortynine.append(int(s))
             else:
-                sixfortynine.append(s)
+                sixfortynine.append(int(s))
         self.label649win.setText('-'.join(map(str,sixfortynine)))
 
         six55 = re.split("-", driver.find_element(By.XPATH, 
@@ -102,9 +127,9 @@ class App(QMainWindow):
         for s in six55:
             if s[0] == '0':
                 s = s[1]
-                sixfiftyfive.append(s)
+                sixfiftyfive.append(int(s))
             else:
-                sixfiftyfive.append(s)
+                sixfiftyfive.append(int(s))
         self.label655win.setText('-'.join(map(str,sixfiftyfive)))
 
         six58 = re.split("-", driver.find_element(By.XPATH, 
@@ -112,14 +137,10 @@ class App(QMainWindow):
         for s in six58:
             if s[0] == '0':
                 s = s[1]
-                sixfiftyeight.append(s)
+                sixfiftyeight.append(int(s))
             else:
-                sixfiftyeight.append(s)
+                sixfiftyeight.append(int(s))
         self.label658win.setText('-'.join(map(str,sixfiftyeight)))
-                
-
-
-
     
     def quitApp(self):
         QtCore.QCoreApplication.instance().quit()
