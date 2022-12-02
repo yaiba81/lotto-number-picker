@@ -46,19 +46,32 @@ class App(QMainWindow):
         self.btn658pdp.clicked.connect(lambda: self.testBtn("Hello World"))
         self.btn658sp.clicked.connect(lambda: self.testBtn("Hello World"))
 
+    def genWeight(self, combi):
+        count = len(combi)
+        weights = []
+        weight = 10 / count
+        for i in range(count):
+            weights.append(weight)
+        return weights
+
     def pdpBtn(self, num, combi):
+        #get the posible number
+        #remove the previous win combination
+        #task weight to each numbers
+        #loop 6 times to get a pick
+        #remove each number pick to the combi
         pick = []
         choices = []
         nums = []
         weights = []
         iter = num - 6
-        
+
         for i in range(1, num):
             if i not in combi:
                 nums.append(i)
 
-        for i in range(1, iter):
-            pass
+        for i in range(6):
+            pick.append(random.choices(nums, k=1, weights=weights))
 
 
 
