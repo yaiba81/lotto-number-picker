@@ -9,13 +9,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import random
 import sys
-import time
 import re
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 website = "https://www.lottopcso.com/"
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+regwt = 9
+lesswt = 1
 sixfortytwo = []
 sixfortytwowin = []
 sixfortyfive = []
@@ -33,54 +34,76 @@ class App(QMainWindow):
         super(App, self). __init__()
         loadUi('assets/ui/main.ui', self)
         self.getLatestWinCombi()
-        self.pdpBtn(43, sixfortytwo)
+        
         self.label.mousePressEvent = self.clear
-        self.btn642pdp.clicked.connect(lambda: self.testBtn("Hello World"))
-        self.btn642sp.clicked.connect(lambda: self.testBtn("Hello World"))
+        self.btn642pdp.clicked.connect(lambda: self.pdpBtn(43, sixfortytwo))
+        self.btn642sp.clicked.connect(lambda: self.spBtn(43, sixfortytwo))
         self.btn645pdp.clicked.connect(lambda: self.testBtn("Hello World"))
-        self.btn645sp.clicked.connect(lambda: self.testBtn("Hello World"))
+        self.btn645sp.clicked.connect(lambda: self.spBtn(46, sixfortyfive))
         self.btn649pdp.clicked.connect(lambda: self.testBtn("Hello World"))
-        self.btn649sp.clicked.connect(lambda: self.testBtn("Hello World"))
+        self.btn649sp.clicked.connect(lambda: self.spBtn(50, sixfortynine))
         self.btn655pdp.clicked.connect(lambda: self.testBtn("Hello World"))
-        self.btn655sp.clicked.connect(lambda: self.testBtn("Hello World"))
+        self.btn655sp.clicked.connect(lambda: self.spBtn(56, sixfiftyfive))
         self.btn658pdp.clicked.connect(lambda: self.testBtn("Hello World"))
-        self.btn658sp.clicked.connect(lambda: self.testBtn("Hello World"))
+        self.btn658sp.clicked.connect(lambda: self.spBtn(59, sixfiftyeight))
 
-    def genWeight(self, combi):
+    def genWeight(self, combi, base):
         count = len(combi)
         weights = []
-        weight = 10 / count
+        weight = base / count
         for i in range(count):
             weights.append(weight)
         return weights
+    
+    def getNewCombi(self, combi, num):
+        for i in combi:
+            if num == i:
+                combi.remove(i)
+        return combi
 
+    # button for predict per digit
     def pdpBtn(self, num, combi):
-        #get the posible number
-        #remove the previous win combination
-        #task weight to each numbers
-        #loop 6 times to get a pick
-        #remove each number pick to the combi
-        pick = []
-        choices = []
+        pass
+
+    def spBtn(self, num, combi):
+        randomPick = []
         nums = []
-        weights = []
-        iter = num - 6
+        com = list(dict.fromkeys(sixfortytwo + sixfortyfive + sixfortynine + sixfiftyfive + sixfiftyeight))
+
+        for i in com:
+            if i in combi:
+                com.remove(i)
 
         for i in range(1, num):
             if i not in combi:
                 nums.append(i)
 
+        for i in nums:
+            if i in com:
+                nums.remove(i)
+
         for i in range(6):
-            pick.append(random.choices(nums, k=1, weights=weights))
+            wt = self.genWeight(nums, regwt) + self.genWeight(com, lesswt)
+            print(wt)
+            print(nums+com)
+            pick = int(random.choices(nums + com, k=1, weights=wt)[0])
+            randomPick.append(pick)
+            nums = self.getNewCombi(nums, pick)
+            com = self.getNewCombi(com, pick)
 
+        if num == 43:
+            self.label642sp.setText(str(randomPick).replace("[", "").replace("]", ""))
+        if num == 46:
+            self.label645sp.setText(str(randomPick).replace("[", "").replace("]", ""))
+        if num == 50:
+            self.label649sp.setText(str(randomPick).replace("[", "").replace("]", ""))
+        if num == 56:
+            self.label655sp.setText(str(randomPick).replace("[", "").replace("]", ""))
+        if num == 59:
+            self.label658sp.setText(str(randomPick).replace("[", "").replace("]", ""))
 
-
-    def spBtn(self, num, combi):
-        pass
 
     def testBtn(self, word):
-        self.label642pdp.setText(word) 
-        self.label642sp.setText(word)
         self.label645pdp.setText(word) 
         self.label645sp.setText(word) 
         self.label649pdp.setText(word) 
