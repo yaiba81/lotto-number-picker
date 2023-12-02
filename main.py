@@ -6,15 +6,26 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 import random
 import sys
 import re
 
-chrome_options = Options()
+""" service = Service()
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+driver = webdriver.Chrome(service=service, options=options) """
+
+""" chrome_options = Options()
 chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\lotto-number-picker\chromedriver.exe'), options=chrome_options) """
+
+firefox_options = Options()
+firefox_options.add_argument('--headless')
+driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\lotto-number-picker\geckodriver.exe'), options=firefox_options) 
 website = "https://www.lottopcso.com/"
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
 regwt = 9
 lesswt = 1
 sixfortytwo = []
@@ -166,7 +177,7 @@ class App(QMainWindow):
         driver.get(website)
 
         six42 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[5]/td[2]').text)
+        '//figure[5][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
         for s in six42:
             if s[0] == '0':
                 s = s[1]
@@ -176,7 +187,7 @@ class App(QMainWindow):
         self.label642win.setText('-'.join(map(str,sixfortytwo)))
 
         six45 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[4]/td[2]').text)
+        '//figure[4][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
         for s in six45:
             if s[0] == '0':
                 s = s[1]
@@ -186,7 +197,7 @@ class App(QMainWindow):
         self.label645win.setText('-'.join(map(str,sixfortyfive)))
 
         six49 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[3]/td[2]').text)
+        '//figure[3][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
         for s in six49:
             if s[0] == '0':
                 s = s[1]
@@ -196,7 +207,7 @@ class App(QMainWindow):
         self.label649win.setText('-'.join(map(str,sixfortynine)))
 
         six55 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[2]/td[2]').text)
+        '//figure[2][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
         for s in six55:
             if s[0] == '0':
                 s = s[1]
@@ -206,7 +217,7 @@ class App(QMainWindow):
         self.label655win.setText('-'.join(map(str,sixfiftyfive)))
 
         six58 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        '//figure[1][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
         for s in six58:
             if s[0] == '0':
                 s = s[1]
