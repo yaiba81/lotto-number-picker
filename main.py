@@ -187,9 +187,15 @@ class App(QMainWindow):
         for s in six42:
             if s[0] == '0':
                 s = s[1]
-                sixfortytwo.append(int(s))
+                try:
+                    sixfortytwo.append(int(s))
+                except:
+                    print("Something happened")
             else:
-                sixfortytwo.append(int(s))
+                try:
+                    sixfortytwo.append(int(s))
+                except:
+                    print("Something happened")
         self.label642win.setText('-'.join(map(str,sixfortytwo)))
 
         six45 = re.split("-", driver.find_element(By.XPATH, 
@@ -197,9 +203,15 @@ class App(QMainWindow):
         for s in six45:
             if s[0] == '0':
                 s = s[1]
-                sixfortyfive.append(int(s))
+                try:
+                    sixfortyfive.append(int(s))
+                except:
+                    print("Something happened")
             else:
-                sixfortyfive.append(int(s))
+                try:
+                    sixfortyfive.append(int(s))
+                except:
+                    print("Something happened")
         self.label645win.setText('-'.join(map(str,sixfortyfive)))
 
         six49 = re.split("-", driver.find_element(By.XPATH, 
@@ -207,9 +219,16 @@ class App(QMainWindow):
         for s in six49:
             if s[0] == '0':
                 s = s[1]
-                sixfortynine.append(int(s))
+                try:
+                    sixfortynine.append(int(s))
+                except:
+                    print("Something happened")
+                
             else:
-                sixfortynine.append(int(s))
+                try:
+                    sixfortynine.append(int(s))
+                except:
+                    print("Something happened")
         self.label649win.setText('-'.join(map(str,sixfortynine)))
 
         six55 = re.split("-", driver.find_element(By.XPATH, 
@@ -217,9 +236,16 @@ class App(QMainWindow):
         for s in six55:
             if s[0] == '0':
                 s = s[1]
-                sixfiftyfive.append(int(s))
+                try:
+                    sixfiftyfive.append(int(s))
+                except:
+                    print("Something happened")
+                
             else:
-                sixfiftyfive.append(int(s))
+                try:
+                    sixfiftyfive.append(int(s))
+                except:
+                    print("Something happened")
         self.label655win.setText('-'.join(map(str,sixfiftyfive)))
 
         six58 = re.split("-", driver.find_element(By.XPATH, 
@@ -227,9 +253,16 @@ class App(QMainWindow):
         for s in six58:
             if s[0] == '0':
                 s = s[1]
-                sixfiftyeight.append(int(s))
+                try:
+                    sixfiftyeight.append(int(s))
+                except:
+                    print("Something happened")
+                
             else:
-                sixfiftyeight.append(int(s))
+                try:
+                    sixfiftyeight.append(int(s))
+                except:
+                    print("Something happened")
         self.label658win.setText('-'.join(map(str,sixfiftyeight)))
     
     def quitApp(self):
