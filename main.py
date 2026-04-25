@@ -23,7 +23,9 @@ driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\l
 
 firefox_options = Options()
 firefox_options.add_argument('--headless')
-driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\lotto-number-picker\geckodriver.exe'), options=firefox_options) 
+firefox_options.binary_location = r'c:\workspace\python\lotto-number-picker\geckodriver.exe'
+driver = webdriver.Firefox(options=firefox_options)
+#driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\lotto-number-picker\geckodriver.exe'), options=firefox_options) 
 website = "https://www.lottopcso.com/"
 
 regwt = 9
@@ -96,6 +98,23 @@ class App(QMainWindow):
             if i in com:
                 nums.remove(i)
 
+        for i in com:
+            if i >= num:
+                com.remove(i)
+        
+        for i in nums:
+            if i >= num:
+                nums.remove(i)
+        
+        for i in com:
+            if i >= num:
+                com.remove(i)
+
+        
+        for i in nums:
+            if i >= num:
+                nums.remove(i)
+
         for i in range(6):
             nums1 = self.removeNumPerDigit(nums, [sixfortytwo[i], sixfortyfive[i], sixfortynine[i], sixfiftyfive[i], sixfiftyeight[i]])
             com1 = self.removeNumPerDigit(com, [sixfortytwo[i], sixfortyfive[i], sixfortynine[i], sixfiftyfive[i], sixfiftyeight[i]])
@@ -104,12 +123,6 @@ class App(QMainWindow):
             randomPick.append(pick)
             nums = self.getNewCombi(nums, pick)
             com = self.getNewCombi(com, pick)
-        """ print(nums1)
-        print(com1)
-        print(wt)
-        print(nums)
-        print(com)
-        print(pick) """
 
         if num == 43:
             self.label642pdp.setText(str(randomPick).replace("[", "").replace("]", ""))
@@ -126,7 +139,7 @@ class App(QMainWindow):
         randomPick = []
         nums = []
         com = list(dict.fromkeys(sixfortytwo + sixfortyfive + sixfortynine + sixfiftyfive + sixfiftyeight))
-
+        print(num)
         for i in com:
             if i in combi:
                 com.remove(i)
@@ -138,10 +151,29 @@ class App(QMainWindow):
         for i in nums:
             if i in com:
                 nums.remove(i)
+        
+        for i in com:
+            if i >= num:
+                com.remove(i)
 
+        
+        for i in nums:
+            if i >= num:
+                nums.remove(i)
+
+        for i in com:
+            if i >= num:
+                com.remove(i)
+
+        
+        for i in nums:
+            if i >= num:
+                nums.remove(i)
+        
         for i in range(6):
+            population = nums + com
             wt = self.genWeight(nums, regwt) + self.genWeight(com, lesswt)
-            pick = int(random.choices(nums + com, k=1, weights=wt)[0])
+            pick = int(random.choices(population, k=1, weights=wt)[0])
             randomPick.append(pick)
             nums = self.getNewCombi(nums, pick)
             com = self.getNewCombi(com, pick)
@@ -157,7 +189,7 @@ class App(QMainWindow):
         if num == 59:
             self.label658sp.setText(str(randomPick).replace("[", "").replace("]", ""))
 
-    def testBtn(self, word):
+    """ def testBtn(self, word):
         self.label645pdp.setText(word) 
         self.label645sp.setText(word) 
         self.label649pdp.setText(word) 
@@ -165,7 +197,7 @@ class App(QMainWindow):
         self.label655pdp.setText(word) 
         self.label655sp.setText(word) 
         self.label658pdp.setText(word) 
-        self.label658sp.setText(word)   
+        self.label658sp.setText(word)    """
 
     def clear(self, event):
         self.label642pdp.setText('') 
