@@ -26,7 +26,7 @@ firefox_options.add_argument('--headless')
 firefox_options.binary_location = r'c:\workspace\python\lotto-number-picker\geckodriver.exe'
 driver = webdriver.Firefox(options=firefox_options)
 #driver = webdriver.Chrome(service=Service(executable_path='c:\workspace\python\lotto-number-picker\geckodriver.exe'), options=firefox_options) 
-website = "https://www.lottopcso.com/"
+website = "https://www.pcso.gov.ph/"
 
 regwt = 9
 lesswt = 1
@@ -213,9 +213,19 @@ class App(QMainWindow):
 
     def getLatestWinCombi(self):
         driver.get(website)
-
-        six42 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[9][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        six42 = []
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto1"]').text)
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto2"]').text)
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto3"]').text)
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto4"]').text)
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto5"]').text)
+        six42.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_lotto6"]').text)
         for s in six42:
             if s[0] == '0':
                 s = s[1]
@@ -230,8 +240,19 @@ class App(QMainWindow):
                     print("Something happened")
         self.label642win.setText('-'.join(map(str,sixfortytwo)))
 
-        six45 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[8][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        six45 = []
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega1"]').text)
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega2"]').text)
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega3"]').text)
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega4"]').text)
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega5"]').text)
+        six45.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_mega6"]').text)
         for s in six45:
             if s[0] == '0':
                 s = s[1]
@@ -246,8 +267,19 @@ class App(QMainWindow):
                     print("Something happened")
         self.label645win.setText('-'.join(map(str,sixfortyfive)))
 
-        six49 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[7][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        six49 = []
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super1"]').text)
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super2"]').text)
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super3"]').text)
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super4"]').text)
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super5"]').text)
+        six49.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_super6"]').text)
         for s in six49:
             if s[0] == '0':
                 s = s[1]
@@ -263,8 +295,19 @@ class App(QMainWindow):
                     print("Something happened")
         self.label649win.setText('-'.join(map(str,sixfortynine)))
 
-        six55 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[6][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        six55 = []
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand1"]').text)
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand2"]').text)
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand3"]').text)
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand4"]').text)
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand5"]').text)
+        six55.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_grand6"]').text)
         for s in six55:
             if s[0] == '0':
                 s = s[1]
@@ -280,8 +323,19 @@ class App(QMainWindow):
                     print("Something happened")
         self.label655win.setText('-'.join(map(str,sixfiftyfive)))
 
-        six58 = re.split("-", driver.find_element(By.XPATH, 
-        '//figure[5][@class="wp-block-table tablepress is-style-stripes"]/table/tbody/tr[1]/td[2]').text)
+        six58 = []
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra1"]').text)
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra2"]').text)
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra3"]').text)
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra4"]').text)
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra5"]').text)
+        six58.append(driver.find_element(By.XPATH, 
+        '//*[@id="cphContainer_cphContainer_LottoResults_ultra6"]').text)
         for s in six58:
             if s[0] == '0':
                 s = s[1]
