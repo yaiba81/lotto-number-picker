@@ -139,7 +139,7 @@ class App(QMainWindow):
         randomPick = []
         nums = []
         com = list(dict.fromkeys(sixfortytwo + sixfortyfive + sixfortynine + sixfiftyfive + sixfiftyeight))
-        print(num)
+
         for i in com:
             if i in combi:
                 com.remove(i)
@@ -165,7 +165,6 @@ class App(QMainWindow):
             if i >= num:
                 com.remove(i)
 
-        
         for i in nums:
             if i >= num:
                 nums.remove(i)
@@ -188,16 +187,6 @@ class App(QMainWindow):
             self.label655sp.setText(str(randomPick).replace("[", "").replace("]", ""))
         if num == 59:
             self.label658sp.setText(str(randomPick).replace("[", "").replace("]", ""))
-
-    """ def testBtn(self, word):
-        self.label645pdp.setText(word) 
-        self.label645sp.setText(word) 
-        self.label649pdp.setText(word) 
-        self.label649sp.setText(word) 
-        self.label655pdp.setText(word) 
-        self.label655sp.setText(word) 
-        self.label658pdp.setText(word) 
-        self.label658sp.setText(word)    """
 
     def clear(self, event):
         self.label642pdp.setText('') 
